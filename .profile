@@ -17,6 +17,6 @@ export WM="bspwm"
 
 export PASSWORD_STORE_DIR="$HOME/.local/share/password-store"
 
-if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec startx
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+    startx
 fi
